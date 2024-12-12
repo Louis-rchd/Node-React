@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Liste des Cours</h1>
+
+  <!-- Formulaire d'ajout -->
+  <form (ngSubmit)="addCourse()" class="mb-4">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="name" class="form-label">Nom :</label>
+        <input id="name" [(ngModel)]="newCourse.name" name="name" required class="form-control" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="code" class="form-label">Code :</label>
+        <input id="code" [(ngModel)]="newCourse.code" name="code" required class="form-control" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="topic" class="form-label">Sujet :</label>
+        <input id="topic" [(ngModel)]="newCourse.topic" name="topic" required class="form-control" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="date" class="form-label">Date :</label>
+        <input id="date" [(ngModel)]="newCourse.date" name="date" type="date" required class="form-control" />
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="hour" class="form-label">Heure :</label>
+        <input id="hour" [(ngModel)]="newCourse.hour" name="hour" type="time" required class="form-control" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter le cours</button>
+  </form>
+
+  <!-- Liste des cours -->
+  <div *ngIf="loading">Chargement...</div>
+  <ul *ngIf="!loading" class="list-group">
+    <li *ngFor="let course of courses; trackBy: trackByCourseId" class="list-group-item d-flex justify-content-between align-items-center">
+      {{ course.name }} ({{ course.code }}) - Sujet : {{ course.topic }}
+      <button class="btn btn-danger btn-sm" (click)="deleteCourse(course.id)">Supprimer</button>
+    </li>
+  </ul>
+</div>
+
