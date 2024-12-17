@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import {circle, Icon, icon, latLng, marker, polygon, tileLayer, Map as LeafletMap} from 'leaflet';
 import {NgIf} from '@angular/common';
@@ -6,7 +6,10 @@ import {NgIf} from '@angular/common';
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [],
+  imports: [
+    LeafletModule,
+    NgIf
+  ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
