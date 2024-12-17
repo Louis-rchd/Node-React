@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { Student } from './models/Student';
 import { Teacher } from './models/Teacher';
 import { Course } from './models/Course';
+import { Admin } from './models/Admin';
 import 'reflect-metadata';
 import dotenv from 'dotenv';
 
@@ -14,5 +15,5 @@ export const sequelize = new Sequelize({
   host: process.env.DATABASE_HOST || 'localhost',
   port: Number(process.env.DATABASE_PORT),
   dialect: 'postgres',
-  models: [Student, Teacher, Course], // Chargez vos modèles ici
+  models: [Student, Teacher, Course],
 });
