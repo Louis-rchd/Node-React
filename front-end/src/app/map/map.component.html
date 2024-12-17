@@ -1,0 +1,10 @@
+<div style="width:1000px; height: 300px;"
+     leaflet
+     [leafletOptions]="leafletOptions"
+     [leafletLayers]="leafletLayers"
+     [leafletLayersControl]="leafletLayersControl"
+     (leafletMapReady)="onMapReady($event)"
+     >
+  <div *ngIf="leafletShowLayer" [leafletLayer]="leafletLayer">
+  </div>
+</div>
