@@ -5,7 +5,6 @@ import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-map',
-  standalone: true,
   imports: [
     LeafletModule,
     NgIf

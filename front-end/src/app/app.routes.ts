@@ -12,6 +12,3 @@ export const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'map', component: MapComponent },
 ];
-
-
-

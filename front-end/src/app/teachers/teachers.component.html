@@ -1,33 +1,34 @@
 <div class="container mt-5">
-  <h1 class="mb-4">Liste des Enseignants</h1>
-
-  <!-- Formulaire d'ajout -->
-  <form (ngSubmit)="addTeacher()" class="mb-4">
-    <div class="row">
-      <div class="col-md-4 mb-3">
-        <label for="firstName" class="form-label">Prénom :</label>
-        <input id="firstName" [(ngModel)]="newTeacher.firstName" name="firstName" required class="form-control" />
+    <h1 class="mb-4">Liste des Enseignants</h1>
+  
+    <!-- Formulaire d'ajout -->
+    <form (ngSubmit)="addTeacher()" class="mb-4">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="firstName" class="form-label">Prénom :</label>
+          <input id="firstName" [(ngModel)]="newTeacher.firstName" name="firstName" required class="form-control" />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="lastName" class="form-label">Nom :</label>
+          <input id="lastName" [(ngModel)]="newTeacher.lastName" name="lastName" required class="form-control" />
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="subject" class="form-label">Matière :</label>
+          <input id="subject" [(ngModel)]="newTeacher.subject" name="subject" required class="form-control" />
+        </div>
       </div>
-      <div class="col-md-4 mb-3">
-        <label for="lastName" class="form-label">Nom :</label>
-        <input id="lastName" [(ngModel)]="newTeacher.lastName" name="lastName" required class="form-control" />
-      </div>
-      <div class="col-md-4 mb-3">
-        <label for="subject" class="form-label">Matière :</label>
-        <input id="subject" [(ngModel)]="newTeacher.subject" name="subject" required class="form-control" />
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Ajouter l'enseignant</button>
-  </form>
-
-  <!-- Liste des enseignants -->
-  <div *ngIf="loading">Chargement...</div>
-  <ul *ngIf="!loading" class="list-group">
-    <li *ngFor="let teacher of teachers; trackBy: trackByTeacherId" class="list-group-item d-flex justify-content-between align-items-center">
-      {{ teacher.firstName }} {{ teacher.lastName }} - Matière : {{ teacher.subject }}
-      <button class="btn btn-danger btn-sm" (click)="deleteTeacher(teacher.id)">Supprimer</button>
-    </li>
-  </ul>
+      <button type="submit" class="btn btn-primary">Ajouter l'enseignant</button>
+    </form>
+  
+    <!-- Liste des enseignants -->
+    <div *ngIf="loading">Chargement...</div>
+    <ul *ngIf="!loading" class="list-group">
+      <li *ngFor="let teacher of teachers; trackBy: trackByTeacherId" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ teacher.firstName }} {{ teacher.lastName }} - Matière : {{ teacher.subject }}
+        <button class="btn btn-danger btn-sm" (click)="deleteTeacher(teacher.id)">Supprimer</button>
+      </li>
+    </ul>
 </div>
-
-
+  
+  
+  

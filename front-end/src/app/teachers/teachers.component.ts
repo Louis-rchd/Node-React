@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { TeacherService, Teacher } from '../services/teacher.service';
+import { TeacherService, Teacher } from '../services/teachers.service';
 
 @Component({
   selector: 'app-teachers',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './teachers.component.html',
   styleUrls: ['./teachers.component.css'],
