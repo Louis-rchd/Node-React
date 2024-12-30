@@ -1,0 +1,26 @@
+.drag-drop-zone {
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+  .drag-drop-zone.dragging {
+    background-color: #e3f2fd;
+  }
+  
+  .drag-drop-zone p {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .drag-drop-zone ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .drag-drop-zone li {
+    margin: 5px 0;
+  }

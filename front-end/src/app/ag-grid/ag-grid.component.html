@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <h2>Student List</h2>
+    <!-- Debug info -->
+    <div *ngIf="loading" class="alert alert-info">
+      Chargement des données...
+    </div>
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+    <div *ngIf="!loading && students.length === 0" class="alert alert-warning">
+      Aucun étudiant trouvé
+    </div>
+    <div *ngIf="!loading && students.length > 0" class="alert alert-success">
+      {{ students.length }} étudiants chargés
+    </div>
+    <div 
+      class="ag-theme-alpine" 
+      style="height: 500px; width: 100%;"
+    >
+      <ag-grid-angular
+        [rowData]="students"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [pagination]="true"
+        [paginationAutoPageSize]="true"
+        (gridReady)="onGridReady($event)"
+        >
+      </ag-grid-angular>
+    </div>
+  </div>

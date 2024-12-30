@@ -1,0 +1,14 @@
+<div
+  class="drag-drop-zone"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)"
+  (drop)="onDrop($event)"
+  [class.dragging]="isDragging"
+>
+  <p *ngIf="!droppedFiles.length">Drag files here or click to choose files</p>
+  <ul *ngIf="droppedFiles.length">
+    <li *ngFor="let file of droppedFiles">{{ file.name }}</li>
+  </ul>
+  <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput>
+  <button (click)="fileInput.click()">Choose some files</button>
+</div>

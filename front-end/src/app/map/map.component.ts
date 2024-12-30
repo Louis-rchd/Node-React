@@ -14,20 +14,15 @@ import {NgIf} from '@angular/common';
 })
 export class MapComponent {
   leafletLayer = marker([ 46.879966, -121.726909 ], {
-    icon: icon({
-      ...Icon.Default.prototype.options,
-      iconUrl: 'assets/marker-icon.png',
-      iconRetinaUrl: 'assets/marker-icon-2x.png',
-      shadowUrl: 'assets/marker-shadow.png'
-    })
+    
   });
 
   leafletOptions = {
     layers: [
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
     ],
-    zoom: 11,
-    center: latLng(48.8575, 2.3514) // Paris
+    zoom: 13,
+    center: latLng(48.891, 2.242) // Paris
   };
 
   leafletLayersControl = {
@@ -43,9 +38,41 @@ export class MapComponent {
 
   leafletShowLayer = true;
   leafletLayers = [
-    circle([ 48.8575, 2.3514 ], { radius: 5000 }),
-    // polygon([[ 48.8575, 2.3514 ], [ 48.8575, 2.36 ], [ 48.86, 2.35 ]]),
-    // marker([ 48.8575, 2.3514 ])
+    marker([48.89622158620204, 2.2357236697931], {
+      icon: icon({
+        ...Icon.Default.prototype.options,
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon.png',
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon-2x.png'
+      })
+    }).bindTooltip('Campus at La Defense'),
+    marker([48.8866893926894, 2.248939669792551], {
+      icon: icon({
+        ...Icon.Default.prototype.options,
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon.png',
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon-2x.png',
+      })
+    }).bindTooltip('Campus Cyber'),
+    marker([48.89653138916405, 2.2201073660887256], {
+      icon: icon({
+        ...Icon.Default.prototype.options,
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon.png',
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon-2x.png',
+      })
+    }).bindTooltip('Campus Terasses'),
+    marker([47.28131885965755, -1.5195087368831164], {
+      icon: icon({
+        ...Icon.Default.prototype.options,
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon.png',
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon-2x.png',
+      })
+    }).bindTooltip('Campus Nantes'),
+    marker([43.643202028582934, 3.84064543881431], {
+      icon: icon({
+        ...Icon.Default.prototype.options,
+        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon.png',
+        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/images/marker-icon-2x.png',
+      })
+    }).bindTooltip('Campus Montpellier')
   ];
 
 
