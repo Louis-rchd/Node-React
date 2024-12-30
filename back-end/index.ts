@@ -116,6 +116,30 @@ app.get('/api/students', async (req: Request, res: Response) => {
   res.json(students);
 });
 
+app.get('/api/students/repartition', async (req: Request, res: Response) => {
+  try {
+    // Récupérer la répartition des étudiants par classe
+    const repartition = await Student.findAll({
+      attributes: [
+        'class', // Le champ de la classe
+        [sequelize.fn('COUNT', sequelize.col('class')), 'count'] // Compter le nombre d'étudiants par classe
+      ],
+      group: ['class'], // Regrouper par la classe
+    });
+
+    // Mapper les résultats pour qu'ils soient au format attendu pour le graphique
+    const repartitionData = repartition.map((item) => ({
+      name: item.class,
+      y: parseInt(item.get('count') as string), // La valeur du nombre d'étudiants dans la classe
+    }));
+
+    res.json(repartitionData); // Renvoyer la répartition sous forme de tableau
+  } catch (error) {
+    console.error('Erreur lors de la récupération de la répartition des étudiants :', error);
+    res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
 /**
  * @swagger
  * /api/students:
