@@ -5,9 +5,9 @@
   (drop)="onDrop($event)"
   [class.dragging]="isDragging"
 >
-  <p *ngIf="!droppedFiles.length">Drag files here or click to choose files</p>
-  <ul *ngIf="droppedFiles.length">
-    <li *ngFor="let file of droppedFiles">{{ file.name }}</li>
+  <p *ngIf="!droppedFiles.length">Drag files here or click to choose files</p> <!--While files haven't been chose (using a ngIf), ask to drop a file-->
+  <ul *ngIf="droppedFiles.length"> <!-- File has been dropped (or chosen)-->
+    <li *ngFor="let file of droppedFiles">{{ file.name }}</li> <!-- Print files that have been added-->
   </ul>
   <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput>
   <button (click)="fileInput.click()">Choose some files</button>

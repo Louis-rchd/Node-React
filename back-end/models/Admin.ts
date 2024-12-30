@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType, AllowNull, Unique } from 'sequelize-typescript';
 import bcrypt from 'bcryptjs';
 
-interface AdminCreationAttributes {
+interface AdminCreationAttributes { //Create Admin table in the backend to link it to the table already created in the database
     username: string;
     password: string;
 }

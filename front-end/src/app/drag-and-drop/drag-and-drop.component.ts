@@ -11,17 +11,17 @@ export class DragAndDropComponent {
   isDragging = false;
   droppedFiles: File[] = [];
 
-  onDragOver(event: DragEvent) {
+  onDragOver(event: DragEvent) { //Function that changes isDragging boolean if file is over drag and drop zone
     event.preventDefault();
     this.isDragging = true;
   }
 
-  onDragLeave(event: DragEvent) {
+  onDragLeave(event: DragEvent) { //Function that changes isDragging boolean if file is not over drag and drop zone
     event.preventDefault();
     this.isDragging = false;
   }
 
-  onDrop(event: DragEvent) {
+  onDrop(event: DragEvent) { //Function that adds dropped files to the array containing files
     event.preventDefault();
     this.isDragging = false;
 
@@ -32,7 +32,7 @@ export class DragAndDropComponent {
     }
   }
 
-  onFileSelect(event: Event) {
+  onFileSelect(event: Event) { //Function that adds selected files to the array Files
     const input = event.target as HTMLInputElement;
     if (input.files) {
       for (let i = 0; i < input.files.length; i++) {

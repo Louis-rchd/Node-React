@@ -3,6 +3,7 @@ import { StudentService, Student } from '../services/students.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { CommonModule } from '@angular/common';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model'; 
 
 @Component({
   selector: 'app-ag-grid',
@@ -67,6 +68,7 @@ export class AgGridComponent implements OnInit {
       next: (data: Student[]) => {
         console.log('Students loaded:', data);
         this.students = data;
+        console.log('Current students:', this.students);
         this.loading = false;
       },
       error: (error) => {
@@ -85,5 +87,9 @@ export class AgGridComponent implements OnInit {
     console.log('Grid ready');
     console.log('Current data', this.students);
     params.api.sizeColumnsToFit();
+  }
+
+  public get modules(): any[] {
+    return [ClientSideRowModelModule];
   }
 }

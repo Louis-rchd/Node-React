@@ -14,7 +14,7 @@
       {{ students.length }} étudiants chargés
     </div>
     <div 
-      class="ag-theme-alpine" 
+      class="ag-theme-quartz" 
       style="height: 500px; width: 100%;"
     >
       <ag-grid-angular
@@ -23,7 +23,10 @@
         [defaultColDef]="defaultColDef"
         [pagination]="true"
         [paginationAutoPageSize]="true"
+        [modules]="modules"
         (gridReady)="onGridReady($event)"
+        class="ag-theme-quartz"
+        style="height: 500px; width: 100%;"
         >
       </ag-grid-angular>
     </div>

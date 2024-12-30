@@ -28,7 +28,7 @@ export class CoursesComponent implements OnInit {
         this.loading = false;
       },
       (error) => {
-        console.error('Erreur lors du chargement des cours', error);
+        console.error('Error while loading courses', error);
         this.loading = false;
       }
     );
@@ -36,7 +36,7 @@ export class CoursesComponent implements OnInit {
 
   addCourse(): void {
     if (!this.newCourse.name || !this.newCourse.code || !this.newCourse.topic || !this.newCourse.date || !this.newCourse.hour) {
-      this.errorMessage = 'Tous les champs doivent être remplis';
+      this.errorMessage = 'All fields must be filled';
       return;
     }
     this.courseService.addCourse(this.newCourse).subscribe(
@@ -46,8 +46,8 @@ export class CoursesComponent implements OnInit {
         this.errorMessage = '';
       },
       (error) => {
-        console.error('Erreur lors de l\'ajout du cours', error);
-        this.errorMessage = 'Erreur lors de l\'ajout du cours';
+        console.error('Error while adding the course', error);
+        this.errorMessage = 'Error while adding the course';
       }
     );
   }
@@ -58,8 +58,8 @@ export class CoursesComponent implements OnInit {
         this.courses = this.courses.filter((course) => course.id !== id);
       },
       (error) => {
-        console.error('Erreur lors de la suppression du cours', error);
-        this.errorMessage = 'Erreur lors de la suppression du cours';
+        console.error('Error while deleting the course', error);
+        this.errorMessage = 'Error while deleting the course';
       }
     );
   }

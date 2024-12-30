@@ -12,24 +12,24 @@ import { Admin } from './models/Admin';
 import jwt from 'jsonwebtoken';
 import { authMiddleware } from './middleware/authMiddleware';
 
-dotenv.config();
+dotenv.config(); //Loads credentials from .env file
 
-const app = express();
+const app = express(); //Use Express Framework, working with Node.Js in the Backend
 app.use(express.json());
 app.use(cors());
 
-setupSwagger(app);
+setupSwagger(app); //Setup Swagger, to access it localhost:3000/swagger-ui
 
 sequelize.sync({ alter: true }).then(() => {
   console.log('Base de données synchronisée.');
   app.listen(3000, () => {
-    console.log('Serveur démarré sur http://localhost:3000');
+    console.log('Serveur démarré sur http://localhost:3000'); //Backend UI launched on the port 3000
   });
 }).catch((error) => {
   console.error('Erreur lors de la synchronisation de la base de données :', error);
 });
 
-/*const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret';
+/*const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret'; //Use JWT_SECRET to make a safe and encrypted password in the login page
 
 // Route d'inscription
 app.post('/api/admin/register', (async (req: Request, res: Response, next: NextFunction) => {
@@ -351,7 +351,7 @@ app.delete('/api/courses/:id', async (req: Request, res: Response) => {
 
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Bienvenue dans l\'API de gestion de l\'école !');
+  res.send('Bienvenue dans l\'API de gestion de l\'école ! To access the swagger UI page, go to http://localhost:3000/api-docs');
 });
 
 // Démarrage du serveur

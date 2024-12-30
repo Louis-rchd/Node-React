@@ -18,6 +18,9 @@ You can launch the back end with the command :
 npm start
 ```
 
+## Swagger Page
+
+To access swagger page, you can go to [Swagger page](http://localhost:3000/api-docs/)
 ## Additional informations 
 
 You can find additional informations on [Node.Js latest doc page](https://nodejs.org/docs/latest/api/)

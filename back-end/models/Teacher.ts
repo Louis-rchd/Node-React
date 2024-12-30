@@ -2,7 +2,7 @@ import { Table, Column, Model, DataType } from 'sequelize-typescript';
 import 'reflect-metadata';
 
 @Table
-export class Teacher extends Model {
+export class Teacher extends Model { //Create Teacher table in the backend to link it to the table already created in the database
   @Column({
     type: DataType.STRING,
     allowNull: false,

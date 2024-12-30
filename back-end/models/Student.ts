@@ -5,7 +5,7 @@ import 'reflect-metadata';
   tableName: 'students',
   timestamps: true,
 })
-export class Student extends Model {
+export class Student extends Model { //Create Student table in the backend to link it to the table already created in the database
   @Column({
     type: DataType.STRING,
     allowNull: false,

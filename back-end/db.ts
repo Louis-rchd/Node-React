@@ -17,3 +17,5 @@ export const sequelize = new Sequelize({
   dialect: 'postgres',
   models: [Student, Teacher, Course],
 });
+
+//Connect the backend to PostgreSQL by using .env file credentials
