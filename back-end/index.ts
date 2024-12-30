@@ -29,21 +29,19 @@ sequelize.sync({ alter: true }).then(() => {
 
 /*const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret'; //Use JWT_SECRET to make a safe and encrypted password in the login page
 
-// Route d'inscription
 app.post('/api/admin/register', (async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { username, password } = req.body;
     
-    // Vérifiez si l'admin existe déjà
+    // Check if the admin already exists
     const existingAdmin = await Admin.findOne({ where: { username } });
     if (existingAdmin) {
       return res.status(400).json({ message: 'Cet administrateur existe déjà' });
     }
 
-    // Hachez le mot de passe
     const hashedPassword = await Admin.hashPassword(password);
 
-    // Créez le nouvel admin
+    // Create the new
     const newAdmin = await Admin.create({
       username,
       password: hashedPassword
@@ -59,19 +57,19 @@ app.post('/api/admin/login', (async (req: Request, res: Response, next: NextFunc
   try {
     const { username, password } = req.body;
 
-    // Trouvez l'admin
+    // Find the admin
     const admin = await Admin.findOne({ where: { username } });
     if (!admin) {
       return res.status(401).json({ message: 'Identifiants incorrects' });
     }
 
-    // Vérifiez le mot de passe
+    // Check the password
     const isMatch = await admin.validatePassword(password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Identifiants incorrects' });
     }
 
-    // Générez un token JWT
+    // Generate a token JWT
     const token = jwt.sign(
       { id: admin.id, username: admin.username }, 
       JWT_SECRET, 
@@ -116,22 +114,20 @@ app.get('/api/students', async (req: Request, res: Response) => {
 
 app.get('/api/students/repartition', async (req: Request, res: Response) => {
   try {
-    // Récupérer la répartition des étudiants par classe
     const repartition = await Student.findAll({
       attributes: [
-        'class', // Le champ de la classe
-        [sequelize.fn('COUNT', sequelize.col('class')), 'count'] // Compter le nombre d'étudiants par classe
+        'class',
+        [sequelize.fn('COUNT', sequelize.col('class')), 'count']
       ],
-      group: ['class'], // Regrouper par la classe
+      group: ['class'],
     });
 
-    // Mapper les résultats pour qu'ils soient au format attendu pour le graphique
     const repartitionData = repartition.map((item) => ({
       name: item.class,
-      y: parseInt(item.get('count') as string), // La valeur du nombre d'étudiants dans la classe
+      y: parseInt(item.get('count') as string),
     }));
 
-    res.json(repartitionData); // Renvoyer la répartition sous forme de tableau
+    res.json(repartitionData);
   } catch (error) {
     console.error('Erreur lors de la récupération de la répartition des étudiants :', error);
     res.status(500).json({ message: 'Erreur interne du serveur' });

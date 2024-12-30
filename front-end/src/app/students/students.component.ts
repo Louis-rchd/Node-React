@@ -22,7 +22,7 @@ export class StudentsComponent implements OnInit, AfterViewInit {
 
   Highcharts: typeof Highcharts = Highcharts;
   chartOptions: Highcharts.Options = {};
-  chartInstance: any; // Pour garder une référence à l'instance du graphique
+  chartInstance: any;
 
   constructor(
     private studentService: StudentService,
@@ -31,7 +31,7 @@ export class StudentsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadStudents();
-    this.loadChartData(); // Charger les données pour le graphique
+    this.loadChartData();
   }
 
   loadStudents(): void {
@@ -39,7 +39,7 @@ export class StudentsComponent implements OnInit, AfterViewInit {
       (data: Student[]) => {
         this.students = data;
         this.loading = false;
-        this.loadChartData(); // Mise à jour du graphique après le chargement des étudiants
+        this.loadChartData();
       },
       (error) => {
         console.error('Error while loading students', error);
@@ -58,33 +58,31 @@ export class StudentsComponent implements OnInit, AfterViewInit {
               type: 'pie'
             },
             title: {
-              text: 'Répartition des étudiants par classe'
+              text: 'Students repartition by classes'
             },
             series: [{
               type: 'pie',
-              name: 'Étudiants',
+              name: 'Students',
               data: data
             }]
           };
 
-          // Si le graphique existe déjà, détruisez-le avant de créer un nouveau
           if (this.chartInstance) {
             this.chartInstance.destroy();
           }
 
-          // Créer le graphique avec les nouvelles données
           const chartContainer = document.getElementById('chart-container');
           if (chartContainer) {
             this.chartInstance = Highcharts.chart(chartContainer, this.chartOptions);
           }
 
         } else {
-          this.errorMessage = 'Les données retournées sont invalides ou vides.';
+          this.errorMessage = 'data collected are invalid or empty.';
         }
       },
       (error) => {
-        this.errorMessage = 'Erreur lors de la récupération des données. Veuillez vérifier l\'API.';
-        console.error('Erreur API: ', error);
+        this.errorMessage = 'Error while collecting data. Check API.';
+        console.error('Error API: ', error);
       }
     );
   }
@@ -95,16 +93,14 @@ export class StudentsComponent implements OnInit, AfterViewInit {
         try {
           const chartContainer = document.getElementById('chart-container');
           if (chartContainer) {
-            // Si un graphique existe déjà, détruisez-le avant de créer un nouveau
             if (this.chartInstance) {
               this.chartInstance.destroy();
             }
 
-            // Créer le graphique
             this.chartInstance = Highcharts.chart(chartContainer, this.chartOptions);
           }
         } catch (error) {
-          console.error('Erreur lors de l\'initialisation du graphique:', error);
+          console.error('Error while initializing the graph:', error);
         }
       }, 100);
     }
@@ -121,7 +117,7 @@ export class StudentsComponent implements OnInit, AfterViewInit {
         this.students.push(student); // Adding student to the list
         this.newStudent = { firstName: '', lastName: '', class: '' }; // Reinitialize form
         this.errorMessage = ''; // Reinitialize error message
-        this.loadChartData(); // Mettre à jour le graphique après l'ajout
+        this.loadChartData();
       },
       (error) => {
         console.error('Error while adding the student', error);
@@ -135,7 +131,7 @@ export class StudentsComponent implements OnInit, AfterViewInit {
     this.studentService.deleteStudent(id).subscribe(
       () => {
         this.students = this.students.filter((student) => student.id !== id); // Deleting student from the list
-        this.loadChartData(); // Mettre à jour le graphique après la suppression
+        this.loadChartData();
       },
       (error) => {
         console.error('Error while deleting the student', error);

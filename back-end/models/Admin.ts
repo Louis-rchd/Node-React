@@ -20,12 +20,10 @@ export class Admin extends Model<Admin, AdminCreationAttributes> {
     @Column(DataType.STRING)
     declare password: string;
   
-    // Méthode pour vérifier le mot de passe
     async validatePassword(password: string): Promise<boolean> {
       return await bcrypt.compare(password, this.password);
     }
   
-    // Méthode statique pour hacher le mot de passe avant la sauvegarde
     static async hashPassword(password: string): Promise<string> {
       return await bcrypt.hash(password, 10);
     }

@@ -14,43 +14,43 @@ export interface Student {
   providedIn: 'root',
 })
 export class StudentService {
-  private apiUrl = 'http://localhost:3000/api/students'; // URL pour obtenir les étudiants
-  private repartitionUrl = 'http://localhost:3000/api/students/repartition'; // URL pour obtenir la répartition des étudiants
+  private apiUrl = 'http://localhost:3000/api/students';
+  private repartitionUrl = 'http://localhost:3000/api/students/repartition';
 
   constructor(private http: HttpClient) {}
 
-  // Obtenir la liste des étudiants
+  // Get the list of students
   getStudents(): Observable<Student[]> {
     return this.http.get<Student[]>(this.apiUrl).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Ajouter un étudiant
+  // Add a student
   addStudent(student: Omit<Student, 'id'>): Observable<Student> {
     return this.http.post<Student>(this.apiUrl, student).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Supprimer un étudiant
+  // Delete a student
   deleteStudent(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Obtenir la répartition des étudiants par classe
+  // Get students repartition by classes
   getClassDistribution(): Observable<any> {
     return this.http.get<any>(this.repartitionUrl).pipe(
-      catchError(this.handleError) // Gestion des erreurs
+      catchError(this.handleError)
     );
   }
 
-  // Méthode pour gérer les erreurs
+  // Error handling
   private handleError(error: any) {
-    console.error('Une erreur est survenue:', error);
-    return throwError(() => new Error('Erreur du serveur, veuillez réessayer.'));
+    console.error('Error:', error);
+    return throwError(() => new Error('Servor error, please try again.'));
   }
 }
 
