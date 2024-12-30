@@ -2,7 +2,6 @@ import { Sequelize } from 'sequelize-typescript';
 import { Student } from './models/Student';
 import { Teacher } from './models/Teacher';
 import { Course } from './models/Course';
-import { Admin } from './models/Admin';
 import 'reflect-metadata';
 import dotenv from 'dotenv';
 

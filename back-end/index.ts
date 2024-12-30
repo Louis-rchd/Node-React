@@ -8,8 +8,6 @@ import { Student } from './models/Student';
 import { Teacher } from './models/Teacher';
 import { Course } from './models/Course';
 import { setupSwagger } from './swagger';
-import { Admin } from './models/Admin';
-import jwt from 'jsonwebtoken';
 import { authMiddleware } from './middleware/authMiddleware';
 
 dotenv.config(); //Loads credentials from .env file
